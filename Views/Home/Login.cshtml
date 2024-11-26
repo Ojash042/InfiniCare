@@ -1,0 +1,28 @@
+﻿@model UserCredentials
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid">
+    <div class="w-100 h-100 flex-row">
+        <h2 class="h2 px-5">Login</h2>
+        <form class="w-100 h-75 p-3" asp-controller="Home" asp-action="Login">
+            <div class="form-group px-3 my-3">
+                <label>UserName: </label>
+                <input type="text" placeholder="Enter username" class="form-control" asp-for="UserName"/>
+            </div>
+            <div class="form-group px-3 my-3">
+                <label>Password: </label>
+                <input type="password" placeholder="Enter Password" class="form-control" asp-for="UserPassword"/>
+            </div>
+            <div class="form-group px-3 my-3">
+                <input type="submit" value="Submit" class="btn-primary rounded-2 w-25 h-25"/>
+            </div>
+            <div class="form-control px-3 my-3 btn-secondary">
+                @Html.ActionLink("Go to Sign Up", "Signup", "Home");
+            </div>
+        </form>
+    </div>
+</div>

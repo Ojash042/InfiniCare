@@ -1,0 +1,57 @@
+﻿@using Infinicare_Ojash_Devkota.Services
+@inject TransactionServices _Transaction
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<TransactionDetails> 
+@{
+    ViewBag.Title = "Transaction Report";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid w-100 h-100">
+    
+    <h2>@ViewBag.Title</h2>
+    <div >
+        <form asp-controller="Home" class="row p-3 m-3" asp-action="TransactionReport" method="get">
+            <div class="col-md-3">
+                <label>Start Date</label>
+                <input type="date" value="@DateTime.UnixEpoch.Date" name="startDate" required="required"/>
+            </div>
+            <div class="col-md-3">
+                <label>End Date</label>
+                <input type="date" value="@DateTime.Today" name="endDate" required="required"/>
+            </div>
+            <div class="col-md-3">
+                <input type="submit" class="btn-primary h-100 my-0" value="Submit"/>
+            </div>
+        </form>
+    </div>
+    <table class="table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Sender Acc</th>
+            <th scope="col">Reciever Acc</th>
+            <th scope="col">Sender Bank</th>
+            <th scope="col">Reciever Bank</th>
+            <th scope="col">Transfer Amt(MYR)(</th>
+            <th scope="col">Transfer Amt(NPR)</th>
+            <th scope="col">Date</th>
+            <th scope="col">Exchange Rate</th>
+        </tr>
+        </thead>
+    @foreach (var item in Model) {
+            <tr>
+                <td>@item.TransactionDetailsId </td>
+                <td>@item.SenderAccountNumber</td>
+                <td>@item.ReceiverAccountNumber</td>
+                <td>@item.SenderBankName</td>
+                <td>@item.ReceiverBankName</td>
+                <td>@item.TransferAmountMYR</td>
+                <td>@item.TransferAmountNPR</td>
+                <td>@item.TransferDate</td>
+                <td>@item.ExchangeRate</td>
+            </tr>    
+    }
+    </table>
+
+</div>
